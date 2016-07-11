@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<title>Web Conferencing</title>
-<link href="ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <meta charset="utf-8" />
+    <title>Web Conferencing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="ext/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="s/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="s/bootstrap-theme.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 

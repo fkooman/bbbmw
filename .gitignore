@@ -1,4 +1,4 @@
-data/
-config.php
-tpl_c/
-ext/
+/data/
+/config.php
+/tpl_c/
+/vendor/

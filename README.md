@@ -17,11 +17,13 @@ configuration.
 
 # Installation
 
+You need Git and [Composer](https://getcomposer.org) to install the software.
+
     $ git clone https://github.com/fkooman/bbbmw.git
     $ sh docs/configure.sh
-    $ sh docs/install_dependencies.sh
+    $ /path/to/composer.phar install
 
-If you want to use `ConextGroupsOAuth2` run the following command to 
+If you want to use `VootGroups` run the following command to 
 initialize the database:
 
     $ php docs/init_oauth_db.php

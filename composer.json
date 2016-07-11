@@ -1,0 +1,16 @@
+{
+    "authors": [
+        {
+            "email": "fkooman@tuxed.net",
+            "name": "Fran\u00e7ois Kooman"
+        }
+    ],
+    "description": "BigBlueButton SAML/VOOT connector",
+    "license": "AGPL-3.0",
+    "name": "fkooman/bbbmw",
+    "require": {
+        "fkooman/oauth2-client": "^1.0",
+        "guzzlehttp/guzzle": "^5.3",
+        "smarty/smarty": "^3.1"
+    }
+}

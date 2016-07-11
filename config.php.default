@@ -4,15 +4,15 @@ $config = array ();
 $config['time_zone'] = 'Europe/Amsterdam';
 
 // Whether or not to allow only SSL connections
-$config['ssl_only'] = FALSE;
+$config['ssl_only'] = false;
 
 // Use HTTP Strict Transport Security
-$config['ssl_hsts'] = TRUE;
+$config['ssl_hsts'] = true;
 
 // NullAuth, SimpleAuth, SSPAuth
 $config['auth_type'] = 'SimpleAuth';
 
-// NullGroups, SimpleGroups, ConextGroups, ConextGroupsOAuth2
+// NullGroups, SimpleGroups, VootGroups
 $config['group_type'] = 'SimpleGroups';
 
 // BigBlueButton API configuration
@@ -35,17 +35,13 @@ $config['ssp_sp'] = 'BigBlueButton';
 $config['ssp_dn_attr'] = 'displayName';
 $config['ssp_org_attr'] = 'schacHomeOrganization';
 
-// Use SURFconext for accessing group membership with this OAuth information
-$config['conext_authorize_uri'] = 'https://authz.surfconext.nl/oauth/authorize';
-$config['conext_token_uri']     = 'https://authz.surfconext.nl/oauth/token';
-$config['conext_group_api_uri'] = 'https://voot.surfconext.nl/me/groups';
-$config['conext_key']           = '12345';
-$config['conext_secret']        = '54321';
-$config['conext_redirect_uri']  = 'http://localhost/bbbmw/index.php';
-
-// OAuth database tables
-$config['TokensTableName'] = 'oauth2_tokens';
-$config['StatesTableName'] = 'oauth2_states';
+// VootGroups
+$config['voot_authorize_uri'] = 'https://authz.surfconext.nl/oauth/authorize';
+$config['voot_token_uri'] = 'https://authz.surfconext.nl/oauth/token';
+$config['voot_api_endpoint'] = 'https://voot.surfconext.nl/me/groups';
+$config['voot_client_id' ] = '12345';
+$config['voot_client_secret'] = '54321';
+$config['voot_redirect_uri'] = 'http://localhost/bbbmw/index.php';
 
 // Only allow users from this organisation to create conferences
 //$config['restrict_create_org'] = array("avans.nl", "surfnet.nl");

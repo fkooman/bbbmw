@@ -18,9 +18,9 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+require_once ('vendor/autoload.php');
 require_once ('config.php');
 require_once ('utils.php');
-require_once ("ext/smarty/libs/Smarty.class.php");
 
 try {
 	if (!isset ($config) || !is_array($config)){

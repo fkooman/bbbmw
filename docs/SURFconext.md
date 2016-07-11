@@ -10,18 +10,20 @@ First set the correct values in the configuration file `config.php`:
     // $config['ssp_org_attr']         = 'schacHomeOrganization';
     $config['ssp_org_attr']         = 'urn:mace:terena.org:attribute-def:schacHomeOrganization';
 
-    $config['group_type']           = 'ConextGroupsOAuth2';
-    $config['conext_authorize_uri'] = 'https://api.surfconext.nl/v1/oauth2/authorize';
-    $config['conext_token_uri']     = 'https://api.surfconext.nl/v1/oauth2/token';
-    $config['conext_group_api_uri'] = 'https://api.surfconext.nl/v1/social/rest/groups';
-    $config['conext_key']           = '12345';
-    $config['conext_secret']        = '54321';
-    $config['conext_redirect_uri']  = 'http://localhost/bbbmw/index.php';
+    $config['group_type']           = 'VootGroups';
+
+    // VootGroups
+    $config['voot_authorize_uri'] = 'https://authz.surfconext.nl/oauth/authorize';
+    $config['voot_token_uri'] = 'https://authz.surfconext.nl/oauth/token';
+    $config['voot_api_endpoint'] = 'https://voot.surfconext.nl/me/groups';
+    $config['voot_client_id' ] = '12345';
+    $config['voot_client_secret'] = '54321';
+    $config['voot_redirect_uri'] = 'http://localhost/bbbmw/index.php';
 
     $config['restrict_create_org']  = array();
 
 Replace `12345` and `54321` with your obtained key and secret from SURFconext
-and `conext_redirect_uri` with the location at which you installed this 
+and `voot_redirect_uri` with the location at which you installed this 
 software.
 
 # simpleSAMLphp Configuration

@@ -61,7 +61,7 @@ class VootGroups extends Groups
                 $redirectUri = getConfig($config, 'voot_redirect_uri', true);
 
                 $authorizationRequestUri = $oauthClient->getAuthorizationRequestUri(
-                    'read',
+                    'groups',
                     $redirectUri
                 );
 

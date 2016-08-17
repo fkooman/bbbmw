@@ -28,7 +28,7 @@ class VootGroups extends Groups
             new PDO('sqlite:'.dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR.'data'.DIRECTORY_SEPARATOR.'client.sqlite')
         );
 
-        if (false !== $this->db->get($this->userId)) {
+        if (false === $this->db->get($this->userId)) {
             // no access_token yet
             $provider = new Provider(
                 getConfig($config, 'voot_client_id', true),

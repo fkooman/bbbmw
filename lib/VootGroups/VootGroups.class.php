@@ -81,7 +81,9 @@ class VootGroups extends Groups
             $response = $httpClient->get(
                 $this->apiUrl,
                 [
-                    'headers' => [sprintf('Authorization: Bearer %s', $accessToken)],
+                    'headers' => [
+                        'Authorization' => sprintf('Bearer %s', $accessToken),
+                    ],
                 ]
             )->json();
         } catch (ClientResponseException $e) {

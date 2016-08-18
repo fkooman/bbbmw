@@ -82,7 +82,7 @@ class VootGroups extends Groups
                 $this->apiUrl,
                 [
                     'headers' => [
-                        'Authorization' => sprintf('Bearer %s', $accessToken),
+                        'Authorization' => sprintf('Bearer %s', $accessToken['access_token']),
                     ],
                 ]
             )->json();

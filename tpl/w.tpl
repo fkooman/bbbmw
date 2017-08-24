@@ -3,19 +3,16 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Avans Web Conferencing</title>
+    <title>Web Conferencing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="s/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="s/bootstrap-theme.min.css" rel="stylesheet" media="screen">
-    <link rel=stylesheet type="Text/css"  href="/style.css">
 </head>
 <body>
 
-    <div class="navbar navbar-avans">
+    <div class="navbar">
     <div class="navbar-inner">
-    <ul class="nav nav-center">
-    	<h1>Avans Webconference</h1>
-    </ul>
+    <a class="brand" href="http://www.bigbluebutton.org">BigBlueButton</a>
     <ul class="nav pull-right">
     <li><span title="{$userId}">{$userDisplayName}</span></li>
     </ul>
@@ -123,7 +120,6 @@ Create New Team</a></label>
 </form>
 {/if}
 
-
 	<h3>Recordings</h3>
 
 	<table class="table table-striped table-bordered">
@@ -156,7 +152,6 @@ Create New Team</a></label>
 		{/foreach}
 		</tbody>
 	</table>
-
 
 </div>
 </body>

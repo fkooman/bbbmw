@@ -3,16 +3,19 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Web Conferencing</title>
+    <title>Avans Web Conferencing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="s/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="s/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+    <link rel=stylesheet type="Text/css"  href="/style.css">
 </head>
 <body>
 
-    <div class="navbar">
+    <div class="navbar navbar-avans">
     <div class="navbar-inner">
-    <a class="brand" href="http://www.bigbluebutton.org">BigBlueButton</a>
+    <ul class="nav nav-center">
+    	<h1>Avans Webconference</h1>
+    </ul>
     <ul class="nav pull-right">
     <li><span title="{$userId}">{$userDisplayName}</span></li>
     </ul>
@@ -119,6 +122,42 @@ Create New Team</a></label>
 
 </form>
 {/if}
+
+
+	<h3>Recordings</h3>
+
+	<table class="table table-striped table-bordered">
+		<thead>
+		<tr>
+			<th>Name</th>
+			<th>Moderator</th>
+			<th>Start time</th>
+			<th>Teams</th>
+			<th>&nbsp;</th>
+		</tr>
+		</thead>
+		<tbody>
+		{if empty($recordings) }
+			<tr><td colspan="5"><small class="text-info">No recordings...</small></td></tr>
+		{/if}
+		{foreach $recordings as $recording}
+
+			<tr>
+				<td>{$recording['name']}</td>
+				<td>{$recording['moderatorDN']}</td>
+				<td>{date("Y-m-d\TH:i:s\Z", $recording['startTime']/1000)}</td>
+				<td>
+					{foreach $recording['groups'] as $group}
+						{$group}
+					{/foreach}
+				</td>
+				<td><A href='{$recording['url']}' target=_blank>Play</a></td>
+			</tr>
+		{/foreach}
+		</tbody>
+	</table>
+
+
 </div>
 </body>
 </html>

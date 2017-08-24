@@ -114,7 +114,11 @@ try {
 			$ulogout_url = urlencode($logout_url);
 			/* voice bridge should have a number between 70000 and 79999 according to docs */
 			$vb = mt_rand(70000,79999);
-			$call = "name=$uname&meetingID=$confId&welcome=$uwelcome&logoutURL=$ulogout_url&voiceBridge=$vb&record=true";
+			if (getConfig($config, 'allow_recording', FALSE, true)) {
+				$call = "name=$uname&meetingID=$confId&welcome=$uwelcome&logoutURL=$ulogout_url&voiceBridge=$vb&record=true";
+			} else {
+				$call = "name=$uname&meetingID=$confId&welcome=$uwelcome&logoutURL=$ulogout_url&voiceBridge=$vb&record=false";
+			}
 			$checksum = sha1("create".$call.$salt);
 			$result = getContents("$api_url/create?$call&checksum=$checksum");
 			$xml = new SimpleXMLElement($result);

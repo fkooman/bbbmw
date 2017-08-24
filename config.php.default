@@ -46,4 +46,8 @@ $config['voot_redirect_uri'] = 'http://localhost/bbbmw/index.php';
 // Only allow users from this organisation to create conferences
 //$config['restrict_create_org'] = array("avans.nl", "surfnet.nl");
 $config['restrict_create_org'] = array();
+
+//Should moderators be able to start recording a meeting
+$config['allow_recording']=true;
+
 ?>

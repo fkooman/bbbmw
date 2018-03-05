@@ -1,5 +1,5 @@
 <?php
-
+header('X-Frame-Options: GOFORIT'); 
 /*
  *  BBBmw - BigBlueButton Middleware
  *  Copyright (C) 2012 François Kooman <fkooman@tuxed.net>
@@ -114,7 +114,11 @@ try {
 			$ulogout_url = urlencode($logout_url);
 			/* voice bridge should have a number between 70000 and 79999 according to docs */
 			$vb = mt_rand(70000,79999);
-			$call = "name=$uname&meetingID=$confId&welcome=$uwelcome&logoutURL=$ulogout_url&voiceBridge=$vb&record=true";
+                        if (getConfig($config, 'allow_recording', FALSE, true)) {
+                            $call = "name=$uname&meetingID=$confId&welcome=$uwelcome&logoutURL=$ulogout_url&voiceBridge=$vb&record=true&meta_bbbmwid=$confId";
+                        } else {
+                            $call = "name=$uname&meetingID=$confId&welcome=$uwelcome&logoutURL=$ulogout_url&voiceBridge=$vb&record=false&meta_bbbmwid=$confId";
+                        }
 			$checksum = sha1("create".$call.$salt);
 			$result = getContents("$api_url/create?$call&checksum=$checksum");
 			$xml = new SimpleXMLElement($result);
@@ -163,6 +167,34 @@ try {
 
 	$conferences = $storage->listEntries('conference');
 
+	/* Get a list of all recordings 
+	 */
+	$recordings=array();
+	foreach($conferences as $cid => $cinfo) {
+			        $call = "meetingID=$cid";
+			        $checksum = sha1("getRecordings".$call.$salt);
+			        $result = getContents("$api_url/getRecordings?$call&checksum=$checksum");
+                                $xml = new SimpleXMLElement($result);
+                                $mk = (string)$xml->messageKey;
+				if($mk === "noRecordings") {
+					//unset($conferences[$cid]);
+				} else {
+					$info=(array)$xml->recordings->recording;
+					$recording['recordID']=$info['recordID'];
+					$recording['state']=$info['state'];
+					$recording['published']=$info['published'];
+					$recording['meetingID']=$info['meetingID'];
+					$recording['startTime']=$info['startTime'];
+					$recording['endTime']=$info['endTime'];
+					$recording['groups']=$cinfo['groups'];
+					$recording['name']=$cinfo['name'];
+					$recording['url']=(string)$info['playback']->format->url;
+					$recording['moderatorDN']=$cinfo['moderatorDN'];
+					$recordings[]=$recording;
+					unset($recording);
+				}
+        }
+        
 	/* filter out only my group's conferences, conferences currently
 	 * active and limited to the group context if that was specified
 	 */
@@ -190,10 +222,11 @@ try {
 				} else {
 					$conferences[$cid]['isRunning'] = (string)$xml->running;
 					$conferences[$cid]['participantCount'] = (string)$xml->participantCount;
-				}
+				}				
 			}
 		}
 	}
+	
 
     $restricted = FALSE;
     $restrictToOrganizations = getConfig($config, 'restrict_create_org', FALSE, array());
@@ -204,7 +237,6 @@ try {
             $restricted = TRUE;
         }
     }
-
     $smarty->assign('restricted', $restricted);
 
     /* Web and Gadget template */
@@ -214,6 +246,7 @@ try {
 	$smarty->assign('userGroups', $grps);
 	$smarty->assign('notification', $notification);
 	$smarty->assign('groupContext', $groupContext);
+	$smarty->assign('recordings', $recordings);
 
 	/* allow iframe to set cookies on IE */
 	header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');

@@ -119,6 +119,40 @@ Create New Team</a></label>
 
 </form>
 {/if}
+
+	<h3>Recordings</h3>
+
+	<table class="table table-striped table-bordered">
+		<thead>
+		<tr>
+			<th>Name</th>
+			<th>Moderator</th>
+			<th>Start time</th>
+			<th>Teams</th>
+			<th>&nbsp;</th>
+		</tr>
+		</thead>
+		<tbody>
+		{if empty($recordings) }
+			<tr><td colspan="5"><small class="text-info">No recordings...</small></td></tr>
+		{/if}
+		{foreach $recordings as $recording}
+
+			<tr>
+				<td>{$recording['name']}</td>
+				<td>{$recording['moderatorDN']}</td>
+				<td>{date("Y-m-d\TH:i:s\Z", $recording['startTime']/1000)}</td>
+				<td>
+					{foreach $recording['groups'] as $group}
+						{$group}
+					{/foreach}
+				</td>
+				<td><A href='{$recording['url']}' target=_blank>Play</a></td>
+			</tr>
+		{/foreach}
+		</tbody>
+	</table>
+
 </div>
 </body>
 </html>

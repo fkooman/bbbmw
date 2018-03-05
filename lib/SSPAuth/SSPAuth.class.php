@@ -39,7 +39,7 @@ class SSPAuth extends Auth {
         }
 		$attr = $this->ssp->getAttributes();
 		
-		$_SESSION['userId'] = $nameId['Value'];
+		$_SESSION['userId'] = $nameId->value;
         $_SESSION['userAttr'] = $attr;
 		$_SESSION['userDisplayName'] = $attr[getConfig($this->config, 'ssp_dn_attr', TRUE)][0];
         $_SESSION['userSchacHomeOrganization'] = $attr[getConfig($this->config, 'ssp_org_attr', TRUE)][0];
